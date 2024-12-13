@@ -1,27 +1,17 @@
 class ExpressionAnalyzer {
   constructor() {
     this.transitions = {
-      S: {
-        OP: /^[+\-]$/,
-        C: /^[0-9]$/,
-        ID: /^[a-z]$/,
-        OB: /^\($/,
-      },
-      OP: { ID: /^[a-z]$/, OB: /^\($/, C: /^[0-9]$/ },
-      ID: {
-        ID: /^[a-zA-Z0-9_]*$/,
+      S: { OP: /^[+\-]$/, C: /^[0-9]$/, "V/FN": /^[a-z]$/, OB: /^\($/ },
+      OP: { "V/FN": /^[a-z]$/, OB: /^\($/, C: /^[0-9]$/ },
+      "V/FN": {
+        "V/FN": /^[a-zA-Z0-9_]*$/,
         FNOB: /^\($/,
         CB: /^\)$/,
         E: /^$/,
         OP: /^[+\-*/]$/,
       },
-      FNOB: {
-        CB: /^\)$/,
-        C: /^[0-9]$/,
-        ID: /^[a-z]$/,
-        OP: /^[+\-]$/,
-      },
-      OB: { ID: /^[a-z]$/, OP: /^[+\-]$/, C: /^[0-9]$/ },
+      FNOB: { CB: /^\)$/, C: /^[0-9]$/, "V/FN": /^[a-z]$/, OP: /^[+\-]$/ },
+      OB: { "V/FN": /^[a-z]$/, OP: /^[+\-]$/, C: /^[0-9]$/ },
       CB: { CB: /^\)$/, E: /^$/, OP: /^[+\-*/]$/ },
       C: { E: /^$/, OP: /^[+\-*/]$/, CD: /^\.$/, CB: /^\)$/, C: /^[0-9]$/ },
       CD: { CDC: /^[0-9]$/ },
@@ -43,7 +33,7 @@ class ExpressionAnalyzer {
 
   expectedSymbols(state) {
     return Object.values(this.transitions[state])
-      .map((regex) => regex.toString().replace(/[\^\[\]\$/\\]/g, ""))
+      .map((regex) => regex.toString().replace(/[\^\[\]\$\\/]/g, ""))
       .join(", ");
   }
 
@@ -53,33 +43,18 @@ class ExpressionAnalyzer {
     for (let i = 0; i < expression.length; i++) {
       let symbol = expression[i];
 
-      if (symbol === "0" && expression[i - 1] === "/") {
-        errors.push({ position: i, message: `На 0 ділити не можна.` });
-      }
-
-      if (
-        symbol === "0" &&
-        !/[0-9]/.test(expression[i - 1]) &&
-        /[0-9]/.test(expression[i + 1])
-      ) {
-        errors.push({
-          position: i,
-          message: `Числа не можуть починатися з 0.`,
-        });
-      }
-
       if (
         symbol === ")" &&
         this.statesHistory[this.statesHistory.length - 1].state === "OB"
       ) {
-        errors.push({ position: i, message: `Не можна залишати пусті дужки.` });
+        errors.push(`Позиція: ${i}. Не можна залишати пусті дужки.`);
       }
 
       if (symbol === "(") {
         this.openParentheses++;
       } else if (symbol === ")") {
         if (this.openParentheses === 0) {
-          errors.push({ position: i, message: `Зайва закриваюча дужка.` });
+          errors.push(`Позиція: ${i}. Зайва закриваюча дужка.`);
         } else {
           this.openParentheses--;
         }
@@ -95,18 +70,16 @@ class ExpressionAnalyzer {
         let template =
           i !== 0 ? `Неочікуваний символ` : "Неправильний початок виразу";
 
-        errors.push({
-          position: i,
-          message: `${template}. Очікувані символи: ${expected}`,
-        });
+        errors.push(
+          `Позиція: ${i}. ${template}. Очікувані символи: ${expected}`
+        );
       }
     }
 
     if (this.openParentheses > 0) {
-      errors.push({
-        position: expression.length - 1,
-        message: `Недостатньо закриваючих дужок, всього: ${this.openParentheses}`,
-      });
+      errors.push(
+        `Недостатньо закриваючих дужок, всього: ${this.openParentheses}`
+      );
     }
 
     let finalState = this.matchTransition(this.currentState, "");
@@ -114,10 +87,9 @@ class ExpressionAnalyzer {
       this.statesHistory.push({ state: "E", symbol: "" });
     } else {
       const expected = this.expectedSymbols(this.currentState);
-      errors.push({
-        position: expression.length - 1,
-        message: `Помилка завершення виразу. Очікувані символи: ${expected}`,
-      });
+      errors.push(
+        `Позиція: ${expression.length}. Помилка завершення виразу. Очікувані символи: ${expected}`
+      );
     }
 
     this.printResults(expression, errors);
@@ -137,31 +109,13 @@ class ExpressionAnalyzer {
   }
 
   printResults(expression, errors) {
+    const mergedTokens = ExpressionAnalyzer.mergeTokens(this.statesHistory);
+
     if (errors.length > 0) {
       console.log("\x1b[31m", `Вираз ${expression} є НЕкоректним.`, "\x1b[0m");
-
-      // Підсвічування помилок
-      let markedExpression = "";
-      let errorIndicators = Array(expression.length).fill(" ");
-
-      for (let i = 0; i < expression.length; i++) {
-        if (errors.some((err) => err.position === i)) {
-          markedExpression += `\x1b[31m${expression[i]}\x1b[0m`;
-          errorIndicators[i] = "^";
-        } else {
-          markedExpression += expression[i];
-        }
-      }
-
-      console.log("\n", markedExpression);
-      console.log("\x1b[31m", errorIndicators.join(""), "\x1b[0m");
       console.log(" Помилки:");
-      errors.forEach((error) =>
-        console.log(`  - Позиція ${error.position}: ${error.message}`)
-      );
-      console.log("\n");
+      errors.forEach((error) => console.log("  - ", error));
     } else {
-      const mergedTokens = ExpressionAnalyzer.mergeTokens(this.statesHistory);
       console.log(
         "\x1b[32m",
         `Вираз ${expression} синтаксично коректний.`,
@@ -173,51 +127,45 @@ class ExpressionAnalyzer {
           process.stdout.write(` ${state}(${symbol})`);
         }
       });
-      console.log("\n");
     }
+    console.log("\n");
   }
 }
 
 const expressions = [
   // Valid expressions
-  "5.122 + 0.777",
-  "6 + 3",
-  "y * (z - 6)",
-  "inf() + cos(y)",
-  "- 10 + round(-3.67)",
-  "lg_2 + 3",
-  "0 + 10",
-
-  // Invalid expressions - divided by 0
-  "x / 0 + 5",
-
-  // Invalid expressions - number starts with 0
-  "x + 03",
-
+  "3.15 + 4545.313",
+  "3 + 5",
+  "x * (y + 2)",
+  "sin(x) + cos(y)",
+  "2 * (3 + 4) / 5",
+  "sqrt(a) - log(b)",
+  "(x + y) * (z - w)",
+  "3 + 5 * (2 - 4)",
+  "x / (y - z) * a",
+  "abs(-5) + round(4.67)",
+  "log(10) + sqrt(16)",
+  "+ 7 * 8",
+  "- (3 + 5)",
   // Invalid expressions - starts with invalid characters
-  "* 1 + 2",
-  "/ 1 - 2",
-  ") 1 + 2",
-
+  "* 3 + 5",
+  "/ 2 - 1",
+  ") x + 5",
   // Invalid expressions - ends with invalid characters
-  "1 + 2 *",
-  "(2 - 2 /",
-  "sin(1) +",
+  "3 + 5 *",
+  "(x - y /",
+  "sqrt(16) +",
   "(a + b -",
-
   // Invalid expressions - mismatched brackets
   "3 + (4 - 5",
   "(2 + 3)) * 7",
   "(x * (y + z)",
-  "log() + )sqrt(16)",
-
+  "((a - b) + c",
+  "log(10 + sqrt(25)) + abs(x",
   // Invalid expressions - empty brackets
   "x * () + 5",
   "(3 + ) * 4",
-
-  // Invalid identifier of variable / function
-  "lg() + 1var",
-  "var#2 - 7",
+  "*lgh_2()+3",
 ];
 
 expressions.forEach((expression) => {
