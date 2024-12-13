@@ -60,6 +60,7 @@ class ExpressionAnalyzer {
       if (
         symbol === "0" &&
         !/[0-9]/.test(expression[i - 1]) &&
+        expression[i - 1] !== "." &&
         /[0-9]/.test(expression[i + 1])
       ) {
         errors.push({
@@ -140,7 +141,6 @@ class ExpressionAnalyzer {
     if (errors.length > 0) {
       console.log("\x1b[31m", `Вираз ${expression} є НЕкоректним.`, "\x1b[0m");
 
-      // Підсвічування помилок
       let markedExpression = "";
       let errorIndicators = Array(expression.length).fill(" ");
 
@@ -180,7 +180,7 @@ class ExpressionAnalyzer {
 
 const expressions = [
   // Valid expressions
-  "5.122 + 0.777",
+  "5.0122 + 0.777",
   "6 + 3",
   "y * (z - 6)",
   "inf() + cos(y)",
