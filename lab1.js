@@ -9,10 +9,10 @@ class ExpressionAnalyzer {
       },
       OP: { ID: /^[a-z]$/, OB: /^\($/, C: /^[0-9]$/ },
       ID: {
+        E: /^$/,
         ID: /^[a-zA-Z0-9_]*$/,
         FNOB: /^\($/,
         CB: /^\)$/,
-        E: /^$/,
         OP: /^[+\-*/]$/,
       },
       FNOB: {
@@ -180,44 +180,11 @@ class ExpressionAnalyzer {
 
 const expressions = [
   // Valid expressions
-  "5.0122 + 0.777",
-  "6 + 3",
-  "y * (z - 6)",
-  "inf() + cos(y)",
-  "- 10 + round(-3.67)",
-  "lg_2 + 3",
-  "0 + 10",
-
-  // Invalid expressions - divided by 0
-  "x / 0 + 5",
-
-  // Invalid expressions - number starts with 0
-  "x + 03",
-
-  // Invalid expressions - starts with invalid characters
-  "* 1 + 2",
-  "/ 1 - 2",
-  ") 1 + 2",
-
-  // Invalid expressions - ends with invalid characters
-  "1 + 2 *",
-  "(2 - 2 /",
-  "sin(1) +",
-  "(a + b -",
-
-  // Invalid expressions - mismatched brackets
-  "3 + (4 - 5",
-  "(2 + 3)) * 7",
-  "(x * (y + z)",
-  "log() + )sqrt(16)",
-
-  // Invalid expressions - empty brackets
-  "x * () + 5",
-  "(3 + ) * 4",
-
-  // Invalid identifier of variable / function
-  "lg() + 1var",
-  "var#2 - 7",
+  "-3+12*d/e-d*f2/cd*(a+2.2*4)",
+  "-(b+c)+func1(1*baa+bj_ko2*(j-e))",
+  "-a+b2*0-7",
+  "g2*(b-17.3)+(6-cos(5))",
+  "-(215.01+3122)+1-c",
 ];
 
 expressions.forEach((expression) => {
