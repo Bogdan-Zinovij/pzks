@@ -310,11 +310,18 @@ class ExpressionOptimizer {
             result *= -1;
           }
           this.tokens.splice(i - 1, 3, result.toString());
-          this.optimizations.push(
-            `Обчислено ${num1} ${operator} ${num2} = ${
-              this.tokens[i - 2]
-            }${result}`
-          );
+          if (/^[-]$/.test(this.tokens[i - 2])) {
+            this.optimizations.push(
+              `Обчислено ${num1} ${operator} ${num2} = ${
+                this.tokens[i - 2]
+              }${result}`
+            );
+          } else {
+            this.optimizations.push(
+              `Обчислено ${num1} ${operator} ${num2} = ${result}`
+            );
+          }
+
           i -= 1;
         }
       }
@@ -433,9 +440,10 @@ class ExpressionOptimizer {
         this.simplifyZero() ||
         this.simplifyOne() ||
         this.simplifyParentheses() ||
-        this.calculateConstants() ||
-        this.groupTwoTermsInParens();
+        this.calculateConstants();
     }
+
+    this.groupTwoTermsInParens();
 
     return this.tokens;
   }
@@ -554,8 +562,9 @@ const inputExpressions = [
   "a+(b+c+d+(e+f)+g)+h",
   "a-((b-c-d)-(e-f)-g)-h",
   "5040/8/7/6/5/4/3/2",
+  "64-(32-16)-8-(4-2-1)",
   "-(-i)/1.0 + 0-0*k*h+ 2-4.8/2 + 1*e/2",
-  "a*2/0 + b/(b+b*0-1*b) - 1/(c*2*4.76*(1-2+1))",
+  "1/(c*2*4.76*(1-2+1))",
 ];
 inputExpressions.forEach((expression) => {
   const parser = new ExpressionParser(expression);
