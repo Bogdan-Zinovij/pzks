@@ -144,6 +144,8 @@ class ExpressionOptimizer {
   // Розкривання дужок, починаючи з найбільш пріоритетних
   // Якщо перед дужками мінус - знаки в дужках інвертуються
   simplifyParentheses() {
+    let simplifications = 0;
+
     const findMaxDepth = (tokens) => {
       let depth = 0;
       let maxDepth = 0;
@@ -179,6 +181,18 @@ class ExpressionOptimizer {
                 const prevToken = this.tokens[start - 1];
                 const nextToken = this.tokens[end + 1];
 
+                if (start == end - 2) {
+                  this.tokens.splice(end, 1);
+                  this.tokens.splice(start, 1);
+                  this.optimizations.push(
+                    `Розкрито дужки навколо ${this.tokens
+                      .slice(start, end - 1)
+                      .join("")}`
+                  );
+                  simplifications++;
+                  break;
+                }
+
                 if (
                   (/^[+(]$/.test(prevToken) || prevToken === undefined) &&
                   (/^[+-]$/.test(nextToken) || nextToken === undefined)
@@ -187,9 +201,10 @@ class ExpressionOptimizer {
                   this.tokens.splice(start, 1);
                   this.optimizations.push(
                     `Розкрито дужки навколо ${this.tokens
-                      .slice(start, end)
+                      .slice(start, end - 1)
                       .join("")}`
                   );
+                  simplifications++;
                   break;
                 }
 
@@ -218,6 +233,7 @@ class ExpressionOptimizer {
                   }
 
                   this.optimizations.push(message);
+                  simplifications++;
                   break;
                 }
               }
@@ -229,6 +245,8 @@ class ExpressionOptimizer {
 
       currentDepth--;
     }
+
+    if (simplifications) return true;
 
     return false;
   }
@@ -254,6 +272,7 @@ class ExpressionOptimizer {
 
   // Обчислює дві константи розділені операцією, якщо це можливо
   calculateConstants() {
+    let calculations = 0;
     const roundResult = (num) => {
       return Math.round(num * 1e10) / 1e10;
     };
@@ -282,6 +301,7 @@ class ExpressionOptimizer {
             `Обчислено ${num1} ${operator} ${num2} = ${result}`
           );
           i -= 1;
+          calculations++;
         }
       }
     }
@@ -316,16 +336,20 @@ class ExpressionOptimizer {
                 this.tokens[i - 2]
               }${result}`
             );
+            calculations++;
           } else {
             this.optimizations.push(
               `Обчислено ${num1} ${operator} ${num2} = ${result}`
             );
+            calculations++;
           }
 
           i -= 1;
         }
       }
     }
+
+    if (calculations) return true;
 
     return false;
   }
