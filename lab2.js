@@ -434,7 +434,7 @@ class ExpressionOptimizer {
         this.simplifyOne() ||
         this.simplifyParentheses() ||
         this.calculateConstants() ||
-        this.groupTwoTermsInParens(this.tokens);
+        this.groupTwoTermsInParens();
     }
 
     return this.tokens;
