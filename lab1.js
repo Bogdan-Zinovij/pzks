@@ -1,4 +1,4 @@
-class ExpressionAnalyzer {
+export class ExpressionAnalyzer {
   constructor() {
     this.transitions = {
       S: {
@@ -21,7 +21,7 @@ class ExpressionAnalyzer {
         ID: /^[a-z]$/,
         OP: /^[+\-]$/,
       },
-      OB: { ID: /^[a-z]$/, OP: /^[+\-]$/, C: /^[0-9]$/ },
+      OB: { ID: /^[a-z]$/, OP: /^[+\-]$/, C: /^[0-9]$/, OB: /^\($/ },
       CB: { CB: /^\)$/, E: /^$/, OP: /^[+\-*/]$/ },
       C: { E: /^$/, OP: /^[+\-*/]$/, CD: /^\.$/, CB: /^\)$/, C: /^[0-9]$/ },
       CD: { CDC: /^[0-9]$/ },
@@ -30,6 +30,7 @@ class ExpressionAnalyzer {
     this.currentState = "S";
     this.statesHistory = [{ state: this.currentState, symbol: "" }];
     this.openParentheses = 0;
+    this.errors = [];
   }
 
   matchTransition(state, symbol) {
@@ -49,12 +50,11 @@ class ExpressionAnalyzer {
 
   analyzeExpression(expression) {
     expression = expression.replace(/\s+/g, "");
-    let errors = [];
     for (let i = 0; i < expression.length; i++) {
       let symbol = expression[i];
 
       if (symbol === "0" && expression[i - 1] === "/") {
-        errors.push({ position: i, message: `На 0 ділити не можна.` });
+        this.errors.push({ position: i, message: `На 0 ділити не можна.` });
       }
 
       if (
@@ -63,7 +63,7 @@ class ExpressionAnalyzer {
         expression[i - 1] !== "." &&
         /[0-9]/.test(expression[i + 1])
       ) {
-        errors.push({
+        this.errors.push({
           position: i,
           message: `Числа не можуть починатися з 0.`,
         });
@@ -73,14 +73,17 @@ class ExpressionAnalyzer {
         symbol === ")" &&
         this.statesHistory[this.statesHistory.length - 1].state === "OB"
       ) {
-        errors.push({ position: i, message: `Не можна залишати пусті дужки.` });
+        this.errors.push({
+          position: i,
+          message: `Не можна залишати пусті дужки.`,
+        });
       }
 
       if (symbol === "(") {
         this.openParentheses++;
       } else if (symbol === ")") {
         if (this.openParentheses === 0) {
-          errors.push({ position: i, message: `Зайва закриваюча дужка.` });
+          this.errors.push({ position: i, message: `Зайва закриваюча дужка.` });
         } else {
           this.openParentheses--;
         }
@@ -96,7 +99,7 @@ class ExpressionAnalyzer {
         let template =
           i !== 0 ? `Неочікуваний символ` : "Неправильний початок виразу";
 
-        errors.push({
+        this.errors.push({
           position: i,
           message: `${template}. Очікувані символи: ${expected}`,
         });
@@ -104,7 +107,7 @@ class ExpressionAnalyzer {
     }
 
     if (this.openParentheses > 0) {
-      errors.push({
+      this.errors.push({
         position: expression.length - 1,
         message: `Недостатньо закриваючих дужок, всього: ${this.openParentheses}`,
       });
@@ -115,13 +118,13 @@ class ExpressionAnalyzer {
       this.statesHistory.push({ state: "E", symbol: "" });
     } else {
       const expected = this.expectedSymbols(this.currentState);
-      errors.push({
+      this.errors.push({
         position: expression.length - 1,
         message: `Помилка завершення виразу. Очікувані символи: ${expected}`,
       });
     }
 
-    this.printResults(expression, errors);
+    this.printResults(expression, this.errors);
   }
 
   static mergeTokens(history) {
@@ -167,27 +170,13 @@ class ExpressionAnalyzer {
         `Вираз ${expression} синтаксично коректний.`,
         "\x1b[0m"
       );
-      console.log(" Токени:");
-      mergedTokens.forEach(({ state, symbol }, index) => {
-        if (index !== 0 && index !== mergedTokens.length - 1) {
-          process.stdout.write(` ${state}(${symbol})`);
-        }
-      });
-      console.log("\n");
+      // console.log(" Токени:");
+      // mergedTokens.forEach(({ state, symbol }, index) => {
+      //   if (index !== 0 && index !== mergedTokens.length - 1) {
+      //     process.stdout.write(` ${state}(${symbol})`);
+      //   }
+      // });
+      // console.log("\n");
     }
   }
 }
-
-const expressions = [
-  // Valid expressions
-  "-3+12*d/e-d*f2/cd*(a+2.2*4)",
-  "-(b+c)+func1(1*baa+bj_ko2*(j-e))",
-  "-a+b2*0-7",
-  "g2*(b-17.3)+(6-cos(5))",
-  "-(215.01+3122)+1-c",
-];
-
-expressions.forEach((expression) => {
-  const analyzer = new ExpressionAnalyzer();
-  analyzer.analyzeExpression(expression);
-});
