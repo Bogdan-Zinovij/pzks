@@ -1,0 +1,839 @@
+{
+  "timeline": [
+    {
+      "name": "P[+] 1",
+      "tasks": [
+        {
+          "clock": 1,
+          "taskId": 3,
+          "status": "reading",
+          "readedTask": 3
+        },
+        {
+          "clock": 2,
+          "taskId": 3,
+          "status": "processing"
+        },
+        {
+          "clock": 3,
+          "taskId": 3,
+          "status": "processing"
+        },
+        {
+          "clock": 4,
+          "taskId": 3,
+          "status": "writing"
+        },
+        {
+          "clock": 5,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 6,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 7,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 8,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 9,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 10,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 11,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 12,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 13,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 14,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 15,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 16,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 17,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 18,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 19,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 20,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 21,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 22,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 23,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 24,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 25,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 26,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 27,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 28,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 29,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 30,
+          "taskId": null,
+          "status": "idle"
+        }
+      ]
+    },
+    {
+      "name": "P[+] 2",
+      "tasks": [
+        {
+          "clock": 1,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 2,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 3,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 4,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 5,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 6,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 7,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 8,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 9,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 10,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 11,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 12,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 13,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 14,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 15,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 16,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 17,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 18,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 19,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 20,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 21,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 22,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 23,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 24,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 25,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 26,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 27,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 28,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 29,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 30,
+          "taskId": null,
+          "status": "idle"
+        }
+      ]
+    },
+    {
+      "name": "P[-] 1",
+      "tasks": [
+        {
+          "clock": 1,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 2,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 3,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 4,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 5,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 6,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 7,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 8,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 9,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 10,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 11,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 12,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 13,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 14,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 15,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 16,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 17,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 18,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 19,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 20,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 21,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 22,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 23,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 24,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 25,
+          "taskId": 11,
+          "status": "reading",
+          "readedTask": 3
+        },
+        {
+          "clock": 26,
+          "taskId": 11,
+          "status": "reading",
+          "readedTask": 10
+        },
+        {
+          "clock": 27,
+          "taskId": 11,
+          "status": "processing"
+        },
+        {
+          "clock": 28,
+          "taskId": 11,
+          "status": "processing"
+        },
+        {
+          "clock": 29,
+          "taskId": 11,
+          "status": "processing"
+        },
+        {
+          "clock": 30,
+          "taskId": 11,
+          "status": "writing"
+        }
+      ]
+    },
+    {
+      "name": "P[*] 1",
+      "tasks": [
+        {
+          "clock": 1,
+          "taskId": 6,
+          "status": "idle"
+        },
+        {
+          "clock": 2,
+          "taskId": 6,
+          "status": "reading",
+          "readedTask": 6
+        },
+        {
+          "clock": 3,
+          "taskId": 6,
+          "status": "processing"
+        },
+        {
+          "clock": 4,
+          "taskId": 6,
+          "status": "processing"
+        },
+        {
+          "clock": 5,
+          "taskId": 6,
+          "status": "processing"
+        },
+        {
+          "clock": 6,
+          "taskId": 6,
+          "status": "processing"
+        },
+        {
+          "clock": 7,
+          "taskId": 6,
+          "status": "writing"
+        },
+        {
+          "clock": 8,
+          "taskId": 9,
+          "status": "reading",
+          "readedTask": 9
+        },
+        {
+          "clock": 9,
+          "taskId": 9,
+          "status": "processing"
+        },
+        {
+          "clock": 10,
+          "taskId": 9,
+          "status": "processing"
+        },
+        {
+          "clock": 11,
+          "taskId": 9,
+          "status": "processing"
+        },
+        {
+          "clock": 12,
+          "taskId": 9,
+          "status": "processing"
+        },
+        {
+          "clock": 13,
+          "taskId": 9,
+          "status": "writing"
+        },
+        {
+          "clock": 14,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 15,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 16,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 17,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 18,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 19,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 20,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 21,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 22,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 23,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 24,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 25,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 26,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 27,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 28,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 29,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 30,
+          "taskId": null,
+          "status": "idle"
+        }
+      ]
+    },
+    {
+      "name": "P[/] 1",
+      "tasks": [
+        {
+          "clock": 1,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 2,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 3,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 4,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 5,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 6,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 7,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 8,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 9,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 10,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 11,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 12,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 13,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 14,
+          "taskId": 10,
+          "status": "reading",
+          "readedTask": 6
+        },
+        {
+          "clock": 15,
+          "taskId": 10,
+          "status": "reading",
+          "readedTask": 9
+        },
+        {
+          "clock": 16,
+          "taskId": 10,
+          "status": "processing"
+        },
+        {
+          "clock": 17,
+          "taskId": 10,
+          "status": "processing"
+        },
+        {
+          "clock": 18,
+          "taskId": 10,
+          "status": "processing"
+        },
+        {
+          "clock": 19,
+          "taskId": 10,
+          "status": "processing"
+        },
+        {
+          "clock": 20,
+          "taskId": 10,
+          "status": "processing"
+        },
+        {
+          "clock": 21,
+          "taskId": 10,
+          "status": "processing"
+        },
+        {
+          "clock": 22,
+          "taskId": 10,
+          "status": "processing"
+        },
+        {
+          "clock": 23,
+          "taskId": 10,
+          "status": "processing"
+        },
+        {
+          "clock": 24,
+          "taskId": 10,
+          "status": "writing"
+        },
+        {
+          "clock": 25,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 26,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 27,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 28,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 29,
+          "taskId": null,
+          "status": "idle"
+        },
+        {
+          "clock": 30,
+          "taskId": null,
+          "status": "idle"
+        }
+      ]
+    }
+  ],
+  "maxTime": 30,
+  "stats": {
+    "parallelTime": 30,
+    "sequentialTime": 29,
+    "acceleration": 0.97,
+    "effectiveness": 0.22
+  },
+  "expression": "a+b-c*d/c/d",
+  "tree": {
+    "value": "-",
+    "left": {
+      "value": "+",
+      "left": {
+        "value": "a",
+        "left": null,
+        "right": null
+      },
+      "right": {
+        "value": "b",
+        "left": null,
+        "right": null
+      }
+    },
+    "right": {
+      "value": "/",
+      "left": {
+        "value": "*",
+        "left": {
+          "value": "c",
+          "left": null,
+          "right": null
+        },
+        "right": {
+          "value": "d",
+          "left": null,
+          "right": null
+        }
+      },
+      "right": {
+        "value": "*",
+        "left": {
+          "value": "c",
+          "left": null,
+          "right": null
+        },
+        "right": {
+          "value": "d",
+          "left": null,
+          "right": null
+        }
+      }
+    }
+  }
+}

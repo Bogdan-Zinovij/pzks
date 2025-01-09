@@ -475,7 +475,7 @@ class ExpressionOptimizer {
 
 // Клас ExpressionParser розбиває вираз на токени, проводить оптимізації,
 // перетворює вираз у постфіксну форму та будує абстрактне дерево виразу
-class ExpressionParser {
+export class ExpressionParser {
   constructor(expression) {
     this.expression = expression;
     this.tokens = [];
@@ -558,39 +558,42 @@ class ExpressionParser {
   }
 
   // Логування результатів
-  logResults() {
-    console.log("Перевірка валідності виразу:");
+  parse() {
+    // console.log("Перевірка валідності виразу:");
     this.validateExpression();
 
     this.tokens = ExpressionOptimizer.tokenize(this.expression);
-    console.log("Токени:", this.tokens);
+    // console.log("Токени:", this.tokens);
 
     this.optimize();
-    console.log("Оптимізовані токени:", this.tokens);
-    console.log("Виконані оптимізації:", this.optimizations);
+    // console.log("Оптимізовані токени:", this.tokens);
+    // console.log("Виконані оптимізації:", this.optimizations);
 
     this.toPostfix();
 
     const tree = this.buildTree();
     console.log("Дерево виразу:");
+    // console.dir(tree);
     this.printTree(tree);
+
+    return tree;
   }
 }
 
 // Тестування
-const inputExpressions = [
-  "a+b+c+d+e+f+g+h",
-  "a-b-c-d-e-f-g-h",
-  "a/b/c/d/e/f/g/h",
-  "a*(b-4)-2*b*c-c*d-a*c*d/e/f/g-g-h-i-j",
-  "a+(b+c+d+(e+f)+g)+h",
-  "a-((b-c-d)-(e-f)-g)-h",
-  "5040/8/7/6/5/4/3/2",
-  "64-(32-16)-8-(4-2-1)",
-  "-(-i)/1.0 + 0-0*k*h+ 2-4.8/2 + 1*e/2",
-  "1/(c*2*4.76*(1-2+1))",
-];
-inputExpressions.forEach((expression) => {
-  const parser = new ExpressionParser(expression);
-  parser.logResults();
-});
+// const inputExpressions = [
+//   "a+b+c+d+e+f+g+h",
+//   "a-b-c-d-e-f-g-h",
+//   "a/b/c/d/e/f/g/h",
+//   "a*(b-4)-2*b*c-c*d-a*c*d/e/f/g-g-h-i-j",
+//   "a+(b+c+d+(e+f)+g)+h",
+//   "a-((b-c-d)-(e-f)-g)-h",
+//   "5040/8/7/6/5/4/3/2",
+//   "64-(32-16)-8-(4-2-1)",
+//   "-(-i)/1.0 + 0-0*k*h+ 2-4.8/2 + 1*e/2",
+//   "1/(c*2*4.76*(1-2+1))",
+// ];
+// inputExpressions.forEach((expression) => {
+//   const parser = new ExpressionParser(expression);
+//   parser.parse();
+// });
